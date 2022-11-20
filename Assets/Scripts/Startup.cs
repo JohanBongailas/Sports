@@ -1,21 +1,34 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Startup : MonoBehaviour
+public class startup : MonoBehaviour
 {
+    // Create a list of startup prefabs to be Instantiated
     public List<GameObject> startupPrefabs = new List<GameObject>();
+    
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        GameObject bg = startupPrefabs[0];
+        setProperties(startupPrefabs);
+        Instantialize(startupPrefabs);
+    }
+
+    void setProperties(List<GameObject> startupPrefabs)
+    {
+        // Active status
+        foreach (var gameObj in startupPrefabs)
+        {
+            gameObj.SetActive(true);
+        }
         
     }
 
-
-    void Instantialization(GameObject bg)
+    void Instantialize(List<GameObject> startupPrefabs)
     {
-        Instantiate(bg, transform.position, Quaternion.identity);
+        foreach (var gameObj in startupPrefabs)
+        {
+            Instantiate(gameObj);
+        }
     }
 }
